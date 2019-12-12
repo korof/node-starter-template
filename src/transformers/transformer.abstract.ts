@@ -43,7 +43,6 @@ export abstract class TransformerAbstract<T> {
     const camelCaseName = _.camelCase(include);
     const methodName = "include" + camelCaseName.charAt(0).toUpperCase() + camelCaseName.slice(1);
 
-    console.log(methodName);
     const result = await (this as any)[methodName](model);
 
     try {
@@ -51,7 +50,7 @@ export abstract class TransformerAbstract<T> {
         [include]: result
       };
     } catch (e) {
-      logger.crit(methodName + " not Found");
+      logger.error(methodName + " not Found");
     }
   }
 }

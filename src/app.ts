@@ -1,13 +1,14 @@
 import express from "express";
 import compression from "compression";
 import {apiRoutes} from "./routes/api.route";
-import {ENV_ENVIRONMENT} from "./util/secrets.util";
+import {APP_IDENTIFIER, ENV_ENVIRONMENT} from "./util/secrets.util";
 import {ENVIRONMENT_PRODUCTION} from "./util/constants.util";
 import * as _ from "lodash";
 import {dbService} from "./services/db.service";
 import bodyParser from "body-parser";
 import errorHandler from "errorhandler";
 import cors from "cors";
+import logger from "./util/logger.util";
 
 export class Application {
   private readonly APP: express.Application;
@@ -66,7 +67,7 @@ export class Application {
 
   start(): void {
     this.APP.listen(this.PORT, () => {
-      console.log(`App Started on PORT: ${this.PORT}`);
+      logger.silly(`[${APP_IDENTIFIER}] App Started on PORT: ${this.PORT}`);
     });
   }
 }
