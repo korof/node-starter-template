@@ -11,6 +11,8 @@ router.get("/", errorHandler((req, res) => {
 
 router.get("/test", errorHandler(TestController.test));
 
+router.post("/validation-test", errorHandler(TestController.validationTest));
+
 router.all("*", errorHandler((req, res) => {
   throw new RouteNotFoundException();
 }));
